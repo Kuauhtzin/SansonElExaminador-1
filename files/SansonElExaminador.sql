@@ -32,8 +32,13 @@ password_es_temporal BOOLEAN not null,
 
 vigencia_password integer not null,
 
-ultima_actualizacion_password date not null
+ultima_actualizacion_password date not null,
 
+respuestaSecreta1 VARCHAR(45) NULL,
+
+respuestaSecreta2 VARCHAR(45) NULL,
+
+respuestaSecreta3 VARCHAR(45) NULL
             
 );
 
