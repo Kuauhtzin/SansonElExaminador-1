@@ -24,7 +24,7 @@ public class AuthorizationUtility {
 		
 		resource.addPermissionByRole(Role.ALL, Resource.SecurityController.Action.AUTHENTICATE);
 		resource.addPermissionByRole(Role.ADMIN, Resource.Action.ALL);
-		resource.addPermissionByRole(Role.SOCIO, Resource.Action.ALL);
+		resource.addPermissionByRole(Role.INSTRUCTOR, Resource.Action.ALL);
 		
 		resourceList.add(resource);
 		
@@ -213,7 +213,7 @@ public class AuthorizationUtility {
 		UserValueObject user = new UserValueObject();
 		
 		user.setId("guillermart@gmail.com");
-		user.setRole(Role.SOCIO);
+		user.setRole(Role.INSTRUCTOR);
 
 		
 		if(userHasPermissionsForResource(user, Resource.IndexPage.URL)) 
