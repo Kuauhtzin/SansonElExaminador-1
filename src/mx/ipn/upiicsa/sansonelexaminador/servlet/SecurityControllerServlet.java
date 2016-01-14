@@ -133,7 +133,7 @@ public class SecurityControllerServlet extends HttpServlet
 		String sigue=null;
 		String idUsuario = request.getParameter("id");
 		String nombreBanco = request.getParameter("banco");
-		int numCat=Integer.parseInt(request.getParameter("contador"));
+		int numCat=Integer.parseInt(request.getParameter("categoriaNum"));
 		System.out.println(numCat);
 		String nombreCat[]=new String[numCat];
 		int nameObl[]=new int[numCat];
