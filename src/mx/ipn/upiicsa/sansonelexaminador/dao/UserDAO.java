@@ -193,5 +193,30 @@ public class UserDAO extends SansonElExaminadorMySqlDAO{
 
 
 	}
+	
+	public int registrarPregunta(String banco,String email,String texto,String tipo,String categoria,String respuestas,String correcta,boolean obligatoria) throws ClassNotFoundException,SQLException{
+		PreparedStatement stmt = null;
+	  Connection connection = null;
+	try{
+		System.out.println("UsuarioDAO.registrarPregunta()");
+		connection=getConnection();
+			String sql = "insert into Preguntas ( banco, email, texto, tipo, categoria, respuestas, correcta, obligatoria)values (?,?,?,?,?,?,?,?)";
+			stmt=connection.prepareStatement(sql);
+			stmt.setString(1, banco);
+			stmt.setString(2, email);
+			stmt.setString(3, texto);
+			stmt.setString(4, tipo);
+			stmt.setString(5, categoria);
+			stmt.setString(6, respuestas);
+			stmt.setString(7, correcta);
+			stmt.setBoolean(8, obligatoria);
+			System.out.println("UsuarioDAO.registrarPregunta() - sql [ " + sql + "]");
+		return stmt.executeUpdate();
+		}finally{
+			closeStatement(stmt);
+			closeConnection();
+		}
+	}
+
 
 }
