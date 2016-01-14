@@ -71,9 +71,9 @@ public class SecurityControllerServlet extends HttpServlet
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-	}else if(action.equals("registrarPreguntas")){
+	}else if(action.equals("registrarPregunta")){
 			try {
-				nextView = registrarPreguntas(request);
+				nextView = registrarPregunta(request);
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -125,7 +125,7 @@ public class SecurityControllerServlet extends HttpServlet
 		String res_sec3 = request.getParameter("res_sec3");
 		UserDAO newUser = new UserDAO();
 		newUser.newUser(nombre, apellido,id_usuario,role ,password,res_sec1 ,res_sec2, res_sec3);
-		sigue = Resource.AltaSatsfactoria.URL;
+		sigue = Resource.LoginPage.URL;
 		return sigue;
 	}
 
@@ -145,7 +145,7 @@ public class SecurityControllerServlet extends HttpServlet
 			nameOpc[i] = Integer.parseInt(request.getParameter("nameOpc"+String.valueOf(i)));
 			registrarBanco.registrarBanco(nombreBanco,nombreCat[i],nameObl[i],nameOpc[i],examen,idUsuario);
 	  }
-		sigue = Resource.BancoRegistrado.URL;
+		sigue = Resource.Main.URL;
 		return sigue;
 	}
 
@@ -154,7 +154,24 @@ public class SecurityControllerServlet extends HttpServlet
 	}
 
 	private String registrarInstructor(HttpServletRequest request) throws ClassNotFoundException, SQLException {return "index.html";}
-	private String registrarPreguntas(HttpServletRequest request) throws ClassNotFoundException, SQLException {return "index.html";}
+	private String registrarPregunta(HttpServletRequest request) throws ClassNotFoundException, SQLException {
+		String sigue=null;
+		String nombreBanco = request.getParameter("banco");
+		String idUsuario = request.getParameter("id");
+			String texto=request.getParameter("pregunta0");
+			String categoria=request.getParameter("categoria0");
+			String tipo="VerFal";
+			boolean obligatoria=request.getParameter("obligatoria0").equals("on")?true:false;
+			String correcta=request.getParameter("correcto0");
+			if(correcta==null){correcta=request.getParameter("VF0");}
+			//if(correcta==null){correcta="No llega";}
+			String respuestas=request.getParameter("VF0");
+			//if(respuestas.equals("")){respuestas="No llega";}
+			UserDAO registrarPregunta = new UserDAO();
+			registrarPregunta.registrarPregunta(nombreBanco,idUsuario,texto,tipo,categoria,respuestas,correcta,obligatoria);
+		sigue = Resource.Main.URL;
+		return sigue;
+	}
 
 	/**
 	 * Metodo para login
